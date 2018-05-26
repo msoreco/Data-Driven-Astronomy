@@ -3,6 +3,10 @@ from helper import running_stats
 import numpy as np
 from astropy.io import fits
 
+# Declare constants
+NX = 200
+NY = 200
+
 #
 # Function median_bins_fits
 #
@@ -21,15 +25,15 @@ def median_bins_fits(fits_files, B):
     num_files = len(fits_files)
 
     # Load FITS data into 3-d numpy array
-    data = np.zeros((200, 200, num_files))
+    data = np.zeros((NX, NY, num_files))
     for i in range(0, num_files):
         hdulist = fits.open(fits_files[i])
         data[:,:,i] = hdulist[0].data
 
     # Initialize bin counts, one for each bin for each pixel
-    bin_counts = np.zeros((200, 200, B))
+    bin_counts = np.zeros((NX, NY, B))
 
-    # Calculate per-pixel mean, std deviations (200 x 200 arrays)
+    # Calculate per-pixel mean, std deviations (NX x NY arrays)
     (means, stds) = running_stats(fits_files)
 
     # Calculate per-pixel bin boundaries/widths
@@ -76,7 +80,7 @@ def median_approx_fits(fits_files, B):
     # Initialize counts at number of values in left bin
     counts = left_bin_counts
                 
-    medians = np.empty((200, 200))
+    medians = np.empty((NX, NY))
 
     # Determine which bin contains "(n + 1)/2"-th value by incrementally adding number of
     # values in each bin (for each pixel) and stopping when count reaches threshold.
