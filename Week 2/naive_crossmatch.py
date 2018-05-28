@@ -49,8 +49,8 @@ def dms2dec(d, m, s):
 #
 def import_bss():
   output = []
-  #bss_cat = np.loadtxt('data/bss.dat', usecols=range(1, 7))
-  bss_cat = np.loadtxt('data/table2.dat', usecols=range(1, 7))
+  bss_cat = np.loadtxt('data/bss.dat', usecols=range(1, 7))
+  #bss_cat = np.loadtxt('data/table2.dat', usecols=range(1, 7))
   for i in range(0, len(bss_cat)):
     ra = hms2dec(bss_cat[i][0], bss_cat[i][1], bss_cat[i][2])
     d = dms2dec(bss_cat[i][3], bss_cat[i][4], bss_cat[i][5])
@@ -58,7 +58,7 @@ def import_bss():
   return output
 
 #
-# Function import_bss
+# Function import_super
 #
 # Load optical survey data SuperCOSMOS all-sky catalogue
 # http://ssa.roe.ac.uk/allSky
