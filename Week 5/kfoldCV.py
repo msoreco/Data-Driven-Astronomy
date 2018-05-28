@@ -16,6 +16,7 @@ from wk5_common import median_diff, get_features_targets
 #   k - the number of cross-validation sets to use
 #
 # return:
+#   numpy array of predicted redshift values for all galaxies in data set
 #
 def cross_validate_predictions(model, features, targets, k):
     
